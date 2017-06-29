@@ -6,5 +6,7 @@ namespace LibraryAC.Services
     public interface ILibraryService
     {
         IList<Book> GetAllBooks();
+
+        IList<Transaction> GetTransactions();
     }
 }

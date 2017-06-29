@@ -30,7 +30,7 @@ namespace LibraryAC.Data.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("LibraryAC.Data.Transaction", b =>
+            modelBuilder.Entity("LibraryAC.Data.Entities.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -205,7 +205,7 @@ namespace LibraryAC.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LibraryAC.Data.Transaction", b =>
+            modelBuilder.Entity("LibraryAC.Data.Entities.Transaction", b =>
                 {
                     b.HasOne("LibraryAC.Data.Entities.Book", "Book")
                         .WithMany()

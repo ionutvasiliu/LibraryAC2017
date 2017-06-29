@@ -8,7 +8,7 @@ using LibraryAC.Data;
 namespace LibraryAC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170629104814_AddTransactionsTable")]
+    [Migration("20170629110442_AddTransactionsTable")]
     partial class AddTransactionsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace LibraryAC.Data.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("LibraryAC.Data.Transaction", b =>
+            modelBuilder.Entity("LibraryAC.Data.Entities.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -206,7 +206,7 @@ namespace LibraryAC.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LibraryAC.Data.Transaction", b =>
+            modelBuilder.Entity("LibraryAC.Data.Entities.Transaction", b =>
                 {
                     b.HasOne("LibraryAC.Data.Entities.Book", "Book")
                         .WithMany()

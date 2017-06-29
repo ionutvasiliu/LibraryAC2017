@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LibraryAC.Data;
 using LibraryAC.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryAC.Services
 {
@@ -17,6 +19,11 @@ namespace LibraryAC.Services
         public IList<Book> GetAllBooks()
         {
             return _context.Books.ToList();
+        }
+
+        public IList<Transaction> GetTransactions()
+        {
+            return _context.Transactions.Include(m => m.User).ToList();
         }
     }
 }
