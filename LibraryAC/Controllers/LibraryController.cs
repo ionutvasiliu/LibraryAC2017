@@ -2,6 +2,7 @@ using LibraryAC.Models.LibraryViewModels;
 using LibraryAC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Security.Claims;
 
 namespace LibraryAC.Controllers
@@ -19,7 +20,7 @@ namespace LibraryAC.Controllers
         public IActionResult Index()
         {
             var books = _libraryService.GetAllBooks();
-            
+
             var model = new LibraryViewModel(books);
 
             return View(model);
@@ -31,7 +32,13 @@ namespace LibraryAC.Controllers
 
             var isSaved = _libraryService.Borrow(id, userId);
 
-            return View(isSaved);
+            var borrowViewModel = new BorrowViewModel()
+            {
+                IsSuccessfull = isSaved,
+                BookName = _libraryService.GetAllBooks().Single(book => book.Id == id)?.Name
+            };
+
+            return View(borrowViewModel);
         }
     }
 }

@@ -1,13 +1,12 @@
-@model Boolean
+@using LibraryAC.Models.LibraryViewModels
+@model BorrowViewModel
 @{
     ViewData["Title"] = "Borrow";
 }
 
-<h2>Borrow</h2>
-
-@if (Model)
+@if (Model.IsSuccessfull)
 {
-    <div class="alert alert-success" role="alert">You successfully borrowed a book</div>
+    <div class="alert alert-success" role="alert">You successfully borrowed "@Model.BookName"</div>
 }
 else
 {
