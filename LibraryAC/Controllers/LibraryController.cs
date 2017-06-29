@@ -1,9 +1,11 @@
 using LibraryAC.Models.LibraryViewModels;
 using LibraryAC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryAC.Controllers
 {
+    [Authorize]
     public class LibraryController : Controller
     {
         private readonly ILibraryService _libraryService;

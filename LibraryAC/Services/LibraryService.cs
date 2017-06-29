@@ -16,12 +16,6 @@ namespace LibraryAC.Services
         public IList<Book> GetAllBooks()
         {
             return _context.Books.ToList();
-            //return new List<Book>()
-            //{
-            //    new Book() { Id = 1, Name = "Book #10", Author = "Author #1"},
-            //    new Book() { Id = 2, Name = "Book #20", Author = "Author #1" },
-            //    new Book() { Id = 3, Name = "Book #30", Author = "Author #2" }
-            //};
         }
     }
 }
