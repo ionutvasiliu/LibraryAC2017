@@ -16,6 +16,17 @@ namespace LibraryAC.Services
             _context = context;
         }
 
+        public bool Borrow(int id, string userId)
+        {
+            _context.Transactions.Add(new Transaction()
+            {
+                BookId = id,
+                UserId = userId
+            });
+
+            return _context.SaveChanges() == 1;
+        }
+
         public IList<Book> GetAllBooks()
         {
             return _context.Books.ToList();

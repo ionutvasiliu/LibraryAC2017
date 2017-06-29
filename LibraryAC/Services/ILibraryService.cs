@@ -8,5 +8,6 @@ namespace LibraryAC.Services
         IList<Book> GetAllBooks();
 
         IList<Transaction> GetTransactions();
+        bool Borrow(int id, string userId);
     }
 }

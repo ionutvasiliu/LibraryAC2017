@@ -1,0 +1,15 @@
+@model Boolean
+@{
+    ViewData["Title"] = "Borrow";
+}
+
+<h2>Borrow</h2>
+
+@if (Model)
+{
+    <div class="alert alert-success" role="alert">You successfully borrowed a book</div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">An error occurred while borrowing the book</div>
+}
