@@ -23,5 +23,10 @@ namespace LibraryAC.Controllers
 
             return View(model);
         }
+
+        public IActionResult Borrow(int id)
+        {
+            return new EmptyResult();
+        }
     }
 }

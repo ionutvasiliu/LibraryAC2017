@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using LibraryAC.Data;
+using LibraryAC.Data.Entities;
 
 namespace LibraryAC.Services
 {

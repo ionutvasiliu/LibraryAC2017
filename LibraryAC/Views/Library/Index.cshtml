@@ -13,6 +13,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Author</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -20,13 +21,16 @@
     {   
         <tr>
             <td>
-                @book.Id
+                @Html.DisplayFor(modelItem => book.Id)
             </td>
             <td>
-                @book.Name
+                @Html.DisplayFor(modelItem => book.Name)
             </td>
             <td>
-                @book.Author
+                @Html.DisplayFor(modelItem => book.Author)
+            </td>
+            <td>
+                @Html.ActionLink("Borrow", "Borrow", new { id = book.Id }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
