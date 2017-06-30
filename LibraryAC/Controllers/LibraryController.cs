@@ -42,5 +42,10 @@ namespace LibraryAC.Controllers
 
             return View(borrowViewModel);
         }
+
+        public IActionResult Return(int id)
+        {
+            return new EmptyResult();
+        }
     }
 }
