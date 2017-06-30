@@ -30,7 +30,10 @@
                 @Html.DisplayFor(modelItem => book.Author)
             </td>
             <td>
-                @Html.ActionLink("Borrow", "Borrow", new { id = book.Id }, new { @class = "btn btn-primary" })
+                @if (!book.IsBorrowed)
+                {
+                    @Html.ActionLink("Borrow", "Borrow", new { id = book.Id }, new { @class = "btn btn-primary" })
+                }
             </td>
         </tr>
     }

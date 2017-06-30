@@ -21,7 +21,9 @@ namespace LibraryAC.Controllers
         {
             var books = _libraryService.GetAllBooks();
 
-            var model = new LibraryViewModel(books);
+            var transactions = _libraryService.GetTransactions();
+
+            var model = new LibraryViewModel(books, transactions);
 
             return View(model);
         }

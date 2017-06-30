@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using LibraryAC.Data.Entities;
+using System.Linq;
 
 namespace LibraryAC.Models.LibraryViewModels
 {
     public class LibraryViewModel
     {
+        private IList<Transaction> transactions;
+
         public IList<BookModel> Books { get; set; }
 
-        public LibraryViewModel(IList<Book> books)
+        public LibraryViewModel(IList<Book> books, IList<Transaction> transactions)
         {
             Books = new List<BookModel>();
             foreach (var book in books)
@@ -16,9 +19,11 @@ namespace LibraryAC.Models.LibraryViewModels
                 {
                     Id = book.Id,
                     Name = book.Name,
-                    Author = book.Author
+                    Author = book.Author,
+                    IsBorrowed = transactions.Any(t => t.BookId == book.Id)
                 });
             }
         }
+
     }
 }
