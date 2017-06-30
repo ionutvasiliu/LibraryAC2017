@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LibraryAC.Models;
 using LibraryAC.Data.Entities;
+using LibraryAC.Services;
 
 namespace Library.Tests
 {
@@ -82,28 +83,5 @@ namespace Library.Tests
             //Assert
             Assert.AreEqual(0, result);
         }
-    }
-
-    internal class ScoreService : IScoreService
-    {
-        public int ComputeScore(int bookScore, int userScore)
-        {
-            if(bookScore < 0)
-            {
-                return userScore;
-            }
-
-            if(userScore < 0)
-            {
-                return 0;
-            }
-
-            return bookScore + userScore;
-        }
-    }
-
-    internal interface IScoreService
-    {
-        int ComputeScore(int bookScore, int userScore);
     }
 }

@@ -9,10 +9,12 @@ namespace LibraryAC.Services
     public class LibraryService : ILibraryService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IScoreService _scoreService;
 
-        public LibraryService(ApplicationDbContext context)
+        public LibraryService(ApplicationDbContext context, IScoreService scoreService)
         {
             _context = context;
+            _scoreService = scoreService;
         }
 
         public bool Borrow(int id, string userId)
@@ -42,7 +44,20 @@ namespace LibraryAC.Services
 
             _context.Transactions.Remove(transaction);
 
-            return _context.SaveChanges() == 1;
+            var isScuccessful = _context.SaveChanges() == 1;
+
+            if (isScuccessful)
+            {
+                var user = _context.Users.Single(u => u.Id == userId);
+
+                var book = _context.Books.Single(b => b.Id == id);
+
+                user.Score = _scoreService.ComputeScore(book.Score, user.Score);
+
+                isScuccessful = _context.SaveChanges() == 1;
+            }
+
+            return isScuccessful;
         }
     }
 }

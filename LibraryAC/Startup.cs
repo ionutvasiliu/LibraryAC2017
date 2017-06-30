@@ -52,7 +52,8 @@ namespace LibraryAC
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddTransient<ILibraryService>(p => new LibraryService((ApplicationDbContext)p.GetService(typeof(ApplicationDbContext))));  
+            services.AddTransient<IScoreService, ScoreService>();
+            services.AddTransient<ILibraryService, LibraryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
