@@ -9,9 +9,11 @@ namespace LibraryAC.Models.LibraryViewModels
         private IList<Transaction> transactions;
 
         public IList<BookModel> Books { get; set; }
+        public int UserScore { get; private set; }
 
-        public LibraryViewModel(IList<Book> books, IList<Transaction> transactions)
+        public LibraryViewModel(IList<Book> books, IList<Transaction> transactions, ApplicationUser user)
         {
+            UserScore = user.Score;
             Books = new List<BookModel>();
             foreach (var book in books)
             {

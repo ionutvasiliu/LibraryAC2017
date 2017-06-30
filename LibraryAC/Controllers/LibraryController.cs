@@ -1,6 +1,8 @@
+using LibraryAC.Models;
 using LibraryAC.Models.LibraryViewModels;
 using LibraryAC.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Security.Claims;
@@ -12,9 +14,12 @@ namespace LibraryAC.Controllers
     {
         private readonly ILibraryService _libraryService;
 
-        public LibraryController(ILibraryService libraryService)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public LibraryController(ILibraryService libraryService, UserManager<ApplicationUser> userManager)
         {
             _libraryService = libraryService;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -23,7 +28,11 @@ namespace LibraryAC.Controllers
 
             var transactions = _libraryService.GetTransactions();
 
-            var model = new LibraryViewModel(books, transactions);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == userId);
+
+            var model = new LibraryViewModel(books, transactions, user);
 
             return View(model);
         }
