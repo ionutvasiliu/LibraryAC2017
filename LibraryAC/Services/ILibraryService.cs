@@ -9,5 +9,6 @@ namespace LibraryAC.Services
 
         IList<Transaction> GetTransactions();
         bool Borrow(int id, string userId);
+        bool Return(int id, string userId);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LibraryAC.Data;
 using LibraryAC.Data.Entities;
@@ -35,6 +34,15 @@ namespace LibraryAC.Services
         public IList<Transaction> GetTransactions()
         {
             return _context.Transactions.Include(m => m.User).ToList();
+        }
+
+        public bool Return(int id, string userId)
+        {
+            var transaction = _context.Transactions.Single(t => t.UserId == userId && t.BookId == id);
+
+            _context.Transactions.Remove(transaction);
+
+            return _context.SaveChanges() == 1;
         }
     }
 }

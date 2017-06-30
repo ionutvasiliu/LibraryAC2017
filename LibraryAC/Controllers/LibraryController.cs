@@ -30,6 +30,7 @@ namespace LibraryAC.Controllers
 
         public IActionResult Borrow(int id)
         {
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var isSaved = _libraryService.Borrow(id, userId);
@@ -45,6 +46,10 @@ namespace LibraryAC.Controllers
 
         public IActionResult Return(int id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            bool isSuccessful = _libraryService.Return(id, userId);
+
             return new EmptyResult();
         }
     }
